@@ -2,10 +2,11 @@ class_name LogicGate extends Node2D
 
 
 var state := false
-var inputs: Array[Wire] = []
+@export var inputs: Array[Wire] = [null, null, null, null, null]
 var output: Wire
 
 
+# calculates the gate's state and then updates the output wire
 func update() -> void:
 	calculate()
 	output.update()

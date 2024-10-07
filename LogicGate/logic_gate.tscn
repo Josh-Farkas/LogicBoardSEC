@@ -1,17 +1,27 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmpn7mad5bfnn"]
 
 [ext_resource type="Texture2D" uid="uid://cybehcf7oqv8d" path="res://icon.svg" id="1_uv1st"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7fb2p"]
-radius = 11.0454
+[ext_resource type="PackedScene" uid="uid://djo20ojkadwc1" path="res://LogicGate/input_port.tscn" id="2_1f827"]
 
 [node name="ORGate" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_uv1st")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="InputPort0" parent="." instance=ExtResource("2_1f827")]
+position = Vector2(-64, -46)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-64, -26)
-shape = SubResource("CircleShape2D_7fb2p")
+[node name="InputPort1" parent="." instance=ExtResource("2_1f827")]
+position = Vector2(-64, -23)
+
+[node name="InputPort2" parent="." instance=ExtResource("2_1f827")]
+position = Vector2(-64, 0)
+
+[node name="InputPort3" parent="." instance=ExtResource("2_1f827")]
+position = Vector2(-64, 23)
+
+[node name="InputPort4" parent="." instance=ExtResource("2_1f827")]
+position = Vector2(-64, 46)
+
+[node name="OutputPort" parent="." instance=ExtResource("2_1f827")]
+position = Vector2(64, 0)
