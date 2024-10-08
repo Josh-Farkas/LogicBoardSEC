@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmpn7mad5bfnn"]
+
+[ext_resource type="Script" path="res://LogicGate/Types/ANDGate/and_gate.gd" id="1_ddct2"]
+[ext_resource type="Texture2D" uid="uid://cybehcf7oqv8d" path="res://icon.svg" id="2_ivr7r"]
+[ext_resource type="PackedScene" uid="uid://djo20ojkadwc1" path="res://LogicGate/input_port.tscn" id="3_0ift5"]
+
+[node name="ANDGate" type="Node2D"]
+script = ExtResource("1_ddct2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ivr7r")
+
+[node name="InputPort0" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, -64)
+
+[node name="InputPort1" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, -32)
+
+[node name="InputPort2" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, 0)
+
+[node name="InputPort3" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, 32)
+
+[node name="InputPort4" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, 64)
+
+[node name="OutputPort" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(64, 0)
