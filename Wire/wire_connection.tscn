@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_p18rv"]
 radius = 7.0
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" groups=["wire_connection"]]
 script = ExtResource("1_ysu5b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

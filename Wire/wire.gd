@@ -14,9 +14,6 @@ var drawing: bool = false
 var start_pos: Vector2
 var horizontal_first = false
 
-func _ready() -> void:
-	start_drawing()
-
 func update() -> void:
 	#state = false
 	for input: LogicGate in inputs:
@@ -73,6 +70,7 @@ func finish_drawing() -> void:
 			var connection_point: WireConnectionPoint = wire_connection_point_scn.instantiate()
 			connection_point.position = Vector2(x, horizontal_line.get_point_position(0).y)
 			connection_point.clicked.connect(start_drawing)
+			connection_point.overlap.connect(merge)
 			horizontal_line.add_child(connection_point)
 	
 	sign = sign(vertical_line.get_point_position(1).y - vertical_line.get_point_position(0).y)
@@ -81,13 +79,16 @@ func finish_drawing() -> void:
 			var connection_point: WireConnectionPoint = wire_connection_point_scn.instantiate()
 			connection_point.position = Vector2(vertical_line.get_point_position(0).x, y)
 			connection_point.clicked.connect(start_drawing)
+			connection_point.overlap.connect(merge)
 			vertical_line.add_child(connection_point)
 	
 	horizontal_line = null
 	vertical_line = null
-	
 
+
+# draws the wire from start_point to point
 func draw_to_point(point: Vector2) -> void:
+	if start_pos == point: return
 	horizontal_line.clear_points()
 	vertical_line.clear_points()
 	if horizontal_first:
@@ -100,3 +101,29 @@ func draw_to_point(point: Vector2) -> void:
 		vertical_line.add_point(Vector2(start_pos.x, point.y))
 		horizontal_line.add_point(Vector2(start_pos.x, point.y))
 		horizontal_line.add_point(point)
+
+
+# combines two seperate wires into one
+func merge(other: Wire) -> void:
+	if other == self: return
+	inputs.append_array(other.inputs)
+	outputs.append_array(other.outputs)
+	
+	# update output node inputs to this wire
+	for output in other.outputs:
+		output.inputs[output.inputs.find(other)] = self
+	
+	# update input nodes outputs to be this wire
+	for input in other.inputs:
+		input.output = self
+	
+	# reparent lines to be part of this wire
+	for line: Line2D in other.get_tree().get_nodes_in_group("wire_line"):
+		line.reparent(self)
+	
+	# reparent connections to be part of this wire
+	for connection: WireConnectionPoint in other.get_tree().get_nodes_in_group("wire_connection"):
+		connection.change_wire(self)
+	
+	other.queue_free()
+	update()
