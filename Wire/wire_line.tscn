@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://boljr5ojssibf"]
+
+[node name="WireLine" type="Line2D"]
+default_color = Color(0.696801, 0, 0.0934758, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

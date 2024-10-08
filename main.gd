@@ -6,7 +6,6 @@ func _ready() -> void:
 	var gate1 = ANDGate.new()
 	#var gate2 = ANDGate.new()
 	var wire1 = Wire.new()
-	a
 	var wire2 = Wire.new()
 	var wire3 = Wire.new()
 	
