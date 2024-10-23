@@ -23,6 +23,10 @@ Constants="*res://constants.gd"
 
 project/assembly_name="LogicBoard"
 
+[global_group]
+
+LogicGates=""
+
 [input]
 
 left_click={

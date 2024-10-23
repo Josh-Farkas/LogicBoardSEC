@@ -20,6 +20,17 @@ var drawing: bool = false
 var start_pos: Vector2
 var horizontal_first = false
 
+
+func input_connect(gate: LogicGate, loc: int) -> void:
+	outputs.append(gate)
+	gate.inputs[loc] = self
+	
+	
+func output_connect(gate: LogicGate) -> void:
+	inputs.append(gate)
+	gate.output = self
+	
+	
 func update() -> void:
 	#state = false
 	for input: LogicGate in inputs:
@@ -94,6 +105,7 @@ func finish_drawing() -> void:
 	
 	horizontal_line = null
 	vertical_line = null
+	
 
 
 # draws the wire from start_point to point

@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce5hxt4rytcmr"]
+[gd_scene load_steps=3 format=3 uid="uid://ce5hxt4rytcmr"]
+
+[ext_resource type="Script" path="res://LogicGate/input_port.gd" id="1_thwei"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7fb2p"]
 radius = 11.0454
 
-[node name="Area2D" type="Area2D"]
+[node name="InputPort" type="Area2D"]
+script = ExtResource("1_thwei")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7fb2p")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3xce"]
 size = Vector2(135, 173)
 
-[node name="ANDGate" type="Node2D"]
+[node name="ANDGate" type="Node2D" groups=["LogicGates"]]
 script = ExtResource("1_ddct2")
 
 [node name="Sprite" type="Sprite2D" parent="."]
