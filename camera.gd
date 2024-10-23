@@ -14,11 +14,11 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("zoom_in"):
-		zoom *= 1.1
+		zoom *= .9
 		zoom = zoom.clampf(.25, 2)
 		redraw.emit()
 
 	if event.is_action_pressed("zoom_out"):
-		zoom *= .9
+		zoom *= 1.1
 		zoom = zoom.clampf(.25, 2)
 		redraw.emit()

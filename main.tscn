@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://e2fabjnknov"]
+[gd_scene load_steps=4 format=3 uid="uid://e2fabjnknov"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_fwqb2"]
 [ext_resource type="Script" path="res://camera.gd" id="2_qiina"]
+[ext_resource type="PackedScene" uid="uid://b201naovfjhj1" path="res://LogicGate/Types/ANDGate/and_gate.tscn" id="3_ep41h"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_fwqb2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
 script = ExtResource("2_qiina")
+
+[node name="ANDGate" parent="." instance=ExtResource("3_ep41h")]

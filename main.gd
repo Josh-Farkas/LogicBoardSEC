@@ -41,4 +41,11 @@ func _draw() -> void:
 	for x in range(snapped(pos.x, Constants.GRID_SIZE), snapped(pos.x + size.x, Constants.GRID_SIZE), Constants.GRID_SIZE * max(1, int(1/zoom.x))):
 		for y in range(snapped(pos.y, Constants.GRID_SIZE), snapped(pos.y + size.y, Constants.GRID_SIZE), Constants.GRID_SIZE * max(1, int(1/zoom.y))):
 			draw_circle(Vector2(x, y), 1 / zoom.x, Color.DIM_GRAY)
+
+
+func save(file_path: String) -> void:
+	return
+
+func load_save(file_path: String) -> void:
+	pass
 	
