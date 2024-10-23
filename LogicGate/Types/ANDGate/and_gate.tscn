@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b201naovfjhj1"]
+
+[ext_resource type="Script" path="res://LogicGate/Types/ANDGate/and_gate.gd" id="1_ddct2"]
+[ext_resource type="Texture2D" uid="uid://7ef7n01ggdre" path="res://LogicGate/Types/ANDGate/logic-gates.png" id="2_awq4o"]
+[ext_resource type="PackedScene" uid="uid://ce5hxt4rytcmr" path="res://LogicGate/input_port.tscn" id="3_0ift5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3xce"]
+size = Vector2(135, 173)
+
+[node name="ANDGate" type="Node2D"]
+script = ExtResource("1_ddct2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(16, 0)
+scale = Vector2(0.555556, 0.621094)
+texture = ExtResource("2_awq4o")
+region_enabled = true
+region_rect = Rect2(106, 0, 288, 512)
+
+[node name="InputPort0" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, -64)
+
+[node name="InputPort1" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, -32)
+
+[node name="InputPort2" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, 0)
+
+[node name="InputPort3" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, 32)
+
+[node name="InputPort4" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(-64, 64)
+
+[node name="OutputPort" parent="." instance=ExtResource("3_0ift5")]
+position = Vector2(96, 0)
+
+[node name="DragArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DragArea"]
+position = Vector2(16.5, 1.5)
+shape = SubResource("RectangleShape2D_d3xce")

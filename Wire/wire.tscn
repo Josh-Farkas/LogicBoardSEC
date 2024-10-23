@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmltvggusu6tt"]
+
+[ext_resource type="Script" path="res://Wire/wire.gd" id="1_pcr1m"]
+
+[node name="Wire" type="Node2D"]
+modulate = Color(1, 0, 0, 1)
+script = ExtResource("1_pcr1m")
