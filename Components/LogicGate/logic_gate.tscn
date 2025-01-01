@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmpn7mad5bfnn"]
 
 [ext_resource type="Texture2D" uid="uid://cybehcf7oqv8d" path="res://icon.svg" id="1_uv1st"]
-[ext_resource type="PackedScene" uid="uid://ce5hxt4rytcmr" path="res://LogicGate/input_port.tscn" id="2_1f827"]
+[ext_resource type="PackedScene" uid="uid://ce5hxt4rytcmr" path="res://Components/LogicGate/input_port.tscn" id="2_1f827"]
 
 [node name="ORGate" type="Node2D"]
 

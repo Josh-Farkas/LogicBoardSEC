@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6h370rr652la"
-path="res://.godot/imported/and-gate.png-1537954e30f42d0f90a7f9b7f5edf685.ctex"
+uid="uid://7ef7n01ggdre"
+path="res://.godot/imported/logic-gates.png-4a57b9b035f90de1c3bd6999abc7e977.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://LogicGate/Types/ANDGate/and-gate.png"
-dest_files=["res://.godot/imported/and-gate.png-1537954e30f42d0f90a7f9b7f5edf685.ctex"]
+source_file="res://Components/LogicGate/Types/ANDGate/logic-gates.png"
+dest_files=["res://.godot/imported/logic-gates.png-4a57b9b035f90de1c3bd6999abc7e977.ctex"]
 
 [params]
 

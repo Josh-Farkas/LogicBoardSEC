@@ -6,24 +6,24 @@ var wire_scn = preload("res://Wire/wire.tscn")
 func _ready() -> void:
 	$Camera2D.redraw.connect(queue_redraw)
 	
-	var gate1 = ANDGate.new()
+	#var gate1 = ANDGate.new()
 	var wire1 = Wire.new()
-	var wire2 = Wire.new()
-	var wire3 = Wire.new()
-	
-	wire1.state = false
-	wire2.state = false
-	
-	wire1.outputs.append(gate1)
-	wire2.outputs.append(gate1)
-	wire3.inputs.append(gate1)
-	gate1.inputs.append(wire1)
-	gate1.inputs.append(wire2)
-	gate1.output = wire3
-	
-	wire1.update()
-	
-	print(wire3.state)
+	#var wire2 = Wire.new()
+	#var wire3 = Wire.new()
+	#
+	#wire1.data = 0
+	#wire2.data = 0
+	#
+	#wire1.outputs.append(gate1)
+	#wire2.outputs.append(gate1)
+	#wire3.input = gate1
+	#gate1.inputs.append(wire1)
+	#gate1.inputs.append(wire2)
+	#gate1.output = wire3
+	#
+	#wire1.update()
+	#
+	#print(wire3.state)
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"):

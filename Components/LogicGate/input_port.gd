@@ -16,8 +16,7 @@ func _process(delta: float) -> void:
 
 func _on_mouse_entered() -> void:
 	hovered = self
-	print("on little dot")
+
 
 func _on_mouse_exited() -> void:
 	hovered = null
-	print("not on little dot :(")

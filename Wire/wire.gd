@@ -3,41 +3,61 @@ class_name Wire extends Node2D
 var wire_line_scn: PackedScene = preload("res://Wire/wire_line.tscn")
 var wire_connection_point_scn: PackedScene = preload("res://Wire/wire_connection.tscn")
 
+enum error_type {
+	NONE,
+	MULTIPLE_INPUTS,
+	DATA_WIDTH,
+	LOOP
+}
+
+
 var horizontal_line: WireLine
 var vertical_line: WireLine
-
-var inputs: Array[LogicGate]
-var outputs: Array[LogicGate]
-var state: bool = false:
+var input: Component
+var outputs: Dictionary
+var data: int = 0:
 	set(value):
-		state = value
-		if value:
+		data = value
+		if value > 0:
 			modulate = Color(0, 0.75, 0)
 		else:
 			modulate = Color(0.75, 0, 0)
+var error: error_type = error_type.NONE
 
 var drawing: bool = false
 var start_pos: Vector2
 var horizontal_first = false
 
 
-func input_connect(gate: LogicGate, loc: int) -> void:
-	outputs.append(gate)
-	gate.inputs[loc] = self
+func connect_to_input(component: Component, index: int) -> void:
+	if component not in outputs:
+		outputs[component] = 0
+	outputs[component] += 1
+	component.connect_input(self, index)
 	
 	
-func output_connect(gate: LogicGate) -> void:
-	inputs.append(gate)
-	gate.output = self
+func connect_to_output(component: Component, index: int) -> void:
+	input = component
+	component.connect_output(self, index)
+	
+	
+func disconnect_from_input(component: Component, index: int) -> void:
+	outputs[component] -= 1
+	if outputs[component] == 0:
+		outputs.erase(component) # remove output component if it has no connections
+	component.disconnect_input(index)
+	
+	
+func disconnect_from_output(component: Component, index: int) -> void:
+	input = null
+	component.disconnect_output(index)
 	
 	
 func update() -> void:
-	#state = false
-	for input: LogicGate in inputs:
-		if input.state == true:
-			state = true
-			
-	for output: LogicGate in outputs:
+	if error != error_type.NONE:
+		# TODO Throw Error
+		return
+	for output: Component in outputs:
 		output.update()
 			
 
@@ -45,9 +65,11 @@ func update() -> void:
 func get_closest_grid_point(point: Vector2):
 	return Vector2(snapped(point.x, Constants.GRID_SIZE), snapped(point.y, Constants.GRID_SIZE))
 
+
 # Gets the closest gridpoint to the mouse
 func get_grid_mouse_position() -> Vector2:
 	return get_closest_grid_point(get_global_mouse_position())
+
 
 # Runs whenever user input is given
 func _input(event: InputEvent) -> void:
@@ -127,20 +149,26 @@ func draw_to_point(point: Vector2) -> void:
 		vertical_line.add_new_point(start_pos)
 		vertical_line.add_new_point(Vector2(start_pos.x, point.y))
 
-
 # combines two seperate wires into one
 func merge(other: Wire) -> void:
 	if other == self: return
-	inputs.append_array(other.inputs)
-	outputs.append_array(other.outputs)
 	
-	# update output node inputs to this wire
-	for output in other.outputs:
-		output.inputs[output.inputs.find(other)] = self
-	
-	# update input nodes outputs to be this wire
-	for input in other.inputs:
-		input.output = self
+	if input != null and other.input != null:
+		error = error_type.MULTIPLE_INPUTS
+		return
+	elif other.input != null:
+		
+		var index: int = other.input.outputs.find(other)
+		other.input.outputs[index] = self
+		input = other.input
+		
+	# merge outputs
+	for component in other.outputs:
+		if component in outputs:
+			outputs[component] += other.outputs[component]
+		else:
+			outputs[component] = other.outputs[component]
+
 	
 	# reparent lines to be part of this wire
 	for line: Line2D in other.get_tree().get_nodes_in_group("wire_line"):
@@ -163,11 +191,3 @@ func cancel_drawing() -> void:
 
 func on_line_clicked(line: WireLine) -> void:
 	line.modulate.b = 1
-
-
-	
-func disconnect_output(gate: LogicGate) -> void:
-	pass
-	
-func disconnect_input(gate: LogicGate) -> void:
-	pass
