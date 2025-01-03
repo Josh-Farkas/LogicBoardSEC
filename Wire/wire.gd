@@ -10,7 +10,6 @@ enum error_type {
 	LOOP
 }
 
-
 var horizontal_line: WireLine
 var vertical_line: WireLine
 var input: Component
@@ -26,7 +25,7 @@ var error: error_type = error_type.NONE
 
 var drawing: bool = false
 var start_pos: Vector2
-var horizontal_first = false
+var swapped = false
 
 
 func connect_to_input(component: Component, index: int) -> void:
@@ -74,15 +73,13 @@ func get_grid_mouse_position() -> Vector2:
 # Runs whenever user input is given
 func _input(event: InputEvent) -> void:
 	if drawing:
-		#if event.is_action_pressed("left_click"): # On left click
-			#start_drawing()
 		if event.is_action_released("left_click"): # Runs when left click released
-			finish_drawing()
+			finish_drawing(get_grid_mouse_position())
 		if event is InputEventMouseMotion:
-			draw_to_point(get_grid_mouse_position())
+			draw_to_point(start_pos, get_grid_mouse_position())
 		if event.is_action_pressed("toggle_wire_direction"):
-			horizontal_first = not horizontal_first
-			draw_to_point(get_grid_mouse_position())
+			swapped = not swapped
+			draw_to_point(start_pos, get_grid_mouse_position())
 		if event.is_action_pressed("cancel_drawing"):
 			cancel_drawing()
 			
@@ -92,62 +89,51 @@ func start_drawing() -> void:
 	start_pos = get_closest_grid_point(get_global_mouse_position())
 	horizontal_line = wire_line_scn.instantiate()
 	vertical_line = wire_line_scn.instantiate()
-	horizontal_line.clicked.connect(on_line_clicked)
-	vertical_line.clicked.connect(on_line_clicked)
+	horizontal_line.points.resize(2)
+	vertical_line.points.resize(2)
 	add_child(horizontal_line)
 	add_child(vertical_line)
-	
 
 
-func finish_drawing() -> void:
+func finish_drawing(end: Vector2) -> void:
 	drawing = false
-	if start_pos == get_grid_mouse_position():
+	if start_pos == end:
 		cancel_drawing()
 		return
-		
-	draw_to_point(get_grid_mouse_position())
-	# Add ports to wire to connect other wires to
-	var sign: int = sign(horizontal_line.get_point_position(1).x - horizontal_line.get_point_position(0).x)
-	if sign != 0:
-		for x in range(horizontal_line.get_point_position(0).x, horizontal_line.get_point_position(1).x + sign, sign * Constants.GRID_SIZE):
-			var connection_point: WireConnectionPoint = wire_connection_point_scn.instantiate()
-			connection_point.position = Vector2(x, horizontal_line.get_point_position(0).y)
-			connection_point.clicked.connect(start_drawing)
-			connection_point.overlap.connect(merge)
-			horizontal_line.add_child(connection_point)
+	elif vertical_line.points[0] == vertical_line.points[1]: 
+		# if no vertical line remove it and set horizontal endpoints
+		vertical_line.queue_free()
+		horizontal_line.set_endpoints()
+	elif horizontal_line.points[0] == horizontal_line.points[1]:
+		# if no horizontal line remove it and set vertical endpoints
+		horizontal_line.queue_free()
+		vertical_line.set_endpoints()
+	else:
+		# Set endpoint positions for lines
+		vertical_line.set_endpoints()
+		horizontal_line.set_endpoints()
 	
-	sign = sign(vertical_line.get_point_position(1).y - vertical_line.get_point_position(0).y)
-	if sign != 0:
-		for y in range(vertical_line.get_point_position(0).y, vertical_line.get_point_position(1).y + sign, sign * Constants.GRID_SIZE):
-			var connection_point: WireConnectionPoint = wire_connection_point_scn.instantiate()
-			connection_point.position = Vector2(vertical_line.get_point_position(0).x, y)
-			connection_point.clicked.connect(start_drawing)
-			connection_point.overlap.connect(merge)
-			vertical_line.add_child(connection_point)
 	
-	horizontal_line = null
-	vertical_line = null
+	 
+	
+	
 	
 
 
 # draws the wire from start_point to point
-func draw_to_point(point: Vector2) -> void:
-	if start_pos == point: return
-	horizontal_line.clear_points()
-	vertical_line.clear_points()
-	print("A")
-	print(horizontal_line)
-	print(vertical_line)
-	if horizontal_first:
-		vertical_line.add_new_point(Vector2(point.x, start_pos.y))
-		vertical_line.add_new_point(point)
-		horizontal_line.add_new_point(start_pos)
-		horizontal_line.add_new_point(Vector2(point.x, start_pos.y))
+func draw_to_point(start: Vector2, end: Vector2) -> void:
+	if start == end: return
+	if swapped:
+		vertical_line.points[0] = start
+		vertical_line.points[1] = Vector2(start.x, end.y)
+		horizontal_line.points[0] = Vector2(start.x, end.y)
+		horizontal_line.points[1] = end
 	else:
-		horizontal_line.add_new_point(Vector2(start_pos.x, point.y))
-		horizontal_line.add_new_point(point)
-		vertical_line.add_new_point(start_pos)
-		vertical_line.add_new_point(Vector2(start_pos.x, point.y))
+		horizontal_line.points[0] = start # horizontal line start
+		horizontal_line.points[1] = Vector2(end.x, start.y) # horizontal line end
+		vertical_line.points[0] = Vector2(end.x, start.y) # vertical line start
+		vertical_line.points[1] = end # vertical line end
+	
 
 # combines two seperate wires into one
 func merge(other: Wire) -> void:
@@ -171,14 +157,10 @@ func merge(other: Wire) -> void:
 
 	
 	# reparent lines to be part of this wire
-	for line: Line2D in other.get_tree().get_nodes_in_group("wire_line"):
-		line.reparent(self)
+	#for line: WireLine in other.get_children():
+		#line.call_deferred("reparent", self)
 	
-	# reparent connections to be part of this wire
-	for connection: WireConnectionPoint in other.get_tree().get_nodes_in_group("wire_connection"):
-		connection.change_wire(self)
-	
-	other.queue_free()
+	# other.queue_free()
 	update()
 	
 func cancel_drawing() -> void:

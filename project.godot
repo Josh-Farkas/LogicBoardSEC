@@ -60,6 +60,10 @@ zoom_in={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_2="WireCollisions"
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.907942, 0.907942, 0.907942, 1)
