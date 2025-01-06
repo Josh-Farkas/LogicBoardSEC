@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxxchnars8033"]
+
+[ext_resource type="Script" path="res://UI/ui.gd" id="1_0rxuc"]
+[ext_resource type="PackedScene" uid="uid://dlfthj56g3q8m" path="res://UI/sidebar.tscn" id="1_i5t68"]
+[ext_resource type="PackedScene" uid="uid://cdcmg5uba8eap" path="res://UI/menu_bar.tscn" id="1_ugoh8"]
+[ext_resource type="PackedScene" uid="uid://e2fabjnknov" path="res://Simulation/simulation.tscn" id="2_yvqpa"]
+[ext_resource type="PackedScene" uid="uid://rdl4spb0s6lx" path="res://UI/toolbar.tscn" id="3_l0dlj"]
+
+[sub_resource type="Theme" id="Theme_ol30t"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = SubResource("Theme_ol30t")
+script = ExtResource("1_0rxuc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="MenuBar" parent="VBoxContainer" instance=ExtResource("1_ugoh8")]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sidebar" parent="VBoxContainer/HSplitContainer/VSplitContainer" instance=ExtResource("1_i5t68")]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/HSplitContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Toolbar" parent="VBoxContainer/HSplitContainer/VBoxContainer" instance=ExtResource("3_l0dlj")]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.15
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HSplitContainer/VBoxContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(570, 463)
+render_target_update_mode = 4
+
+[node name="Simulation" parent="VBoxContainer/HSplitContainer/VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_yvqpa")]

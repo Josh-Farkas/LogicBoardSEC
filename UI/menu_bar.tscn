@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cdcmg5uba8eap"]
+
+[node name="MenuBar" type="MenuBar"]
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="File" type="PopupMenu" parent="."]
+item_count = 2
+item_0/text = "Save"
+item_1/text = "Load"
+item_1/id = 1
+
+[node name="Edit" type="PopupMenu" parent="."]
+item_count = 3
+item_0/text = "Cut"
+item_1/text = "Copy"
+item_1/id = 1
+item_2/text = "Paste"
+item_2/id = 2

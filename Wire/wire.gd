@@ -89,10 +89,11 @@ func start_drawing() -> void:
 	start_pos = get_closest_grid_point(get_global_mouse_position())
 	horizontal_line = wire_line_scn.instantiate()
 	vertical_line = wire_line_scn.instantiate()
-	horizontal_line.points.resize(2)
-	vertical_line.points.resize(2)
 	add_child(horizontal_line)
 	add_child(vertical_line)
+	horizontal_line.direction = "horizontal"
+	vertical_line.direction = "vertical"
+	
 
 
 func finish_drawing(end: Vector2) -> void:
@@ -113,12 +114,6 @@ func finish_drawing(end: Vector2) -> void:
 		vertical_line.set_endpoints()
 		horizontal_line.set_endpoints()
 	
-	
-	 
-	
-	
-	
-
 
 # draws the wire from start_point to point
 func draw_to_point(start: Vector2, end: Vector2) -> void:
@@ -154,6 +149,10 @@ func merge(other: Wire) -> void:
 			outputs[component] += other.outputs[component]
 		else:
 			outputs[component] = other.outputs[component]
+			
+	for child in other.get_children():
+		child.reparent(self)
+	other.queue_free()
 
 	
 	# reparent lines to be part of this wire

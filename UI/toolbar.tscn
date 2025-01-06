@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://rdl4spb0s6lx"]
+
+[ext_resource type="Texture2D" uid="uid://cybehcf7oqv8d" path="res://icon.svg" id="1_1ijdb"]
+
+[node name="Toolbar" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("1_1ijdb")
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+layout_mode = 2
+texture_normal = ExtResource("1_1ijdb")
