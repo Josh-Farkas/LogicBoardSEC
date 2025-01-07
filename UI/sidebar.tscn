@@ -60,15 +60,18 @@ script = SubResource("GDScript_v2v2m")
 
 [node name="ANDGate" type="Button" parent="TabContainer/Components/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "AND Gate"
 
 [node name="ORGate" type="Button" parent="TabContainer/Components/VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "OR Gate"
 
 [node name="Splitter" type="Button" parent="TabContainer/Components/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+mouse_default_cursor_shape = 2
 text = "Splitter"
 
 [node name="Circuits" type="ScrollContainer" parent="TabContainer"]

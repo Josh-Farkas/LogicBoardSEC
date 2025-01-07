@@ -15,4 +15,5 @@ texture_normal = ExtResource("1_1ijdb")
 
 [node name="TextureButton2" type="TextureButton" parent="."]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_1ijdb")
