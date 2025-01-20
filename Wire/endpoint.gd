@@ -18,9 +18,13 @@ func _ready() -> void:
 
 
 func merge(other: Endpoint):
+	if other.wire != wire:
+		pass
+		
 	for direction: Vector2 in directions:
 		# if either are true set it to true
 		directions[direction] = other.directions[direction] or directions[direction]
+		other.directions[direction] = directions[direction]
 	if other.wire != wire: # wires are different
 		merge_wires.emit(other.wire)
 

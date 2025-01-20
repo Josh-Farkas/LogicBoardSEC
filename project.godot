@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 Constants="*res://constants.gd"
 Helpers="*res://helpers.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="LogicBoard"

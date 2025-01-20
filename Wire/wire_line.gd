@@ -14,7 +14,6 @@ var wire: Wire:
 @onready var endpoint1: Endpoint = $Endpoint1
 @onready var endpoint2: Endpoint = $Endpoint2
 
-
 func draw(direction: Vector2):
 	endpoint1.directions[direction] = true
 	endpoint2.directions[-direction] = true
@@ -33,6 +32,8 @@ func finish_drawing():
 	
 	endpoint2.set_collision_layer_value(2, true)
 	endpoint2.set_collision_mask_value(2, true)
+	
+	await get_tree().physics_frame # Wait for all original line collisions to be finised
 	
 	# Hack to make collisions work, this causes collisions to be rechecked since
 	# just changing the mask and layer won't cause 'area_entered' to be rechecked
