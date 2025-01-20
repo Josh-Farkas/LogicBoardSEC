@@ -43,10 +43,9 @@ text = "Add Circuit"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
 [node name="Components" type="ScrollContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -58,6 +57,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = SubResource("GDScript_v2v2m")
 
+[node name="NOT Gate" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "NOT Gate"
+
 [node name="ANDGate" type="Button" parent="TabContainer/Components/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -68,13 +72,104 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "OR Gate"
 
+[node name="NAND Gate" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "NAND Gate"
+
+[node name="NOR Gate" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "NOR Gate"
+
+[node name="XOR Gate" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "XOR Gate"
+
+[node name="XNOR Gate" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "XNOR Gate"
+
 [node name="Splitter" type="Button" parent="TabContainer/Components/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
 text = "Splitter"
 
+[node name="Clock" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Clock"
+
+[node name="Multiplexor" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Multiplexor"
+
+[node name="Demultiplexor" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Demultiplexor"
+
+[node name="Adder" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Adder"
+
+[node name="Subtractor" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Subtractor"
+
+[node name="Multiplier" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Multiplier"
+
+[node name="Divider" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Divider"
+
+[node name="Negator" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Negator"
+
+[node name="Comparitor" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Comparitor"
+
+[node name="Register" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Register"
+
+[node name="Button" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Button"
+
+[node name="LED" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "LED"
+
+[node name="Input Pin" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Input Pin"
+
+[node name="Output Pin" type="Button" parent="TabContainer/Components/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Output Pin"
+
 [node name="Circuits" type="ScrollContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0

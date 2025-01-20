@@ -1,19 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://rdl4spb0s6lx"]
+[gd_scene load_steps=7 format=3 uid="uid://rdl4spb0s6lx"]
 
-[ext_resource type="Texture2D" uid="uid://cybehcf7oqv8d" path="res://icon.svg" id="1_1ijdb"]
+[ext_resource type="Texture2D" uid="uid://b2rqveohf8pv5" path="res://finger_icon-removebg-preview (1).png" id="1_ja6g0"]
+[ext_resource type="Texture2D" uid="uid://ci57yo85evevc" path="res://arrow_pointer-removebg-preview.png" id="2_uwbeh"]
+[ext_resource type="Texture2D" uid="uid://bcmsx86r0xikk" path="res://text_icon-removebg-preview.png" id="3_aldfa"]
+[ext_resource type="Texture2D" uid="uid://c100ti4spei16" path="res://wire_icon-removebg-preview.png" id="3_rgm40"]
+[ext_resource type="Texture2D" uid="uid://bd3er2t1g8ei1" path="res://pin_icon__2_-removebg-preview.png" id="5_en62q"]
+[ext_resource type="Texture2D" uid="uid://bqjrfquv6eugk" path="res://pin_icon-removebg-preview.png" id="6_u1neu"]
 
 [node name="Toolbar" type="HBoxContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
-size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 50)
+offset_right = 837.0
+offset_bottom = 512.0
+size_flags_horizontal = 2
 size_flags_vertical = 0
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="Finger" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("1_1ijdb")
+texture_normal = ExtResource("1_ja6g0")
 
-[node name="TextureButton2" type="TextureButton" parent="."]
+[node name="Arrow" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("1_1ijdb")
+texture_normal = ExtResource("2_uwbeh")
+
+[node name="Wire" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_rgm40")
+
+[node name="Text" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_aldfa")
+
+[node name="Pin Input" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_en62q")
+
+[node name="Pin Output" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("6_u1neu")
