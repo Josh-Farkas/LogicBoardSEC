@@ -43,10 +43,9 @@ text = "Add Circuit"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
 [node name="Components" type="ScrollContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
@@ -75,6 +74,7 @@ mouse_default_cursor_shape = 2
 text = "Splitter"
 
 [node name="Circuits" type="ScrollContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
