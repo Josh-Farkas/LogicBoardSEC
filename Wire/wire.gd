@@ -3,6 +3,7 @@ class_name Wire extends Node2D
 var wire_line_scn: PackedScene = preload("res://Wire/wire_line.tscn")
 var wire_connection_point_scn: PackedScene = preload("res://Wire/wire_connection.tscn")
 
+
 enum error_type {
 	NONE,
 	MULTIPLE_INPUTS,
@@ -10,8 +11,7 @@ enum error_type {
 	LOOP
 }
 
-var horizontal_line: WireLine
-var vertical_line: WireLine
+var lines: Array[WireLine]
 var input: Component
 var outputs: Dictionary
 var data: int = 0:
@@ -26,6 +26,10 @@ var error: error_type = error_type.NONE
 var drawing: bool = false
 var start_pos: Vector2
 var swapped = false
+
+
+func _ready() -> void:
+	modulate = Color(randf(), randf(), randf())
 
 
 func connect_to_input(component: Component, index: int) -> void:
@@ -69,7 +73,6 @@ func get_closest_grid_point(point: Vector2):
 func get_grid_mouse_position() -> Vector2:
 	return get_closest_grid_point(get_global_mouse_position())
 
-
 # Runs whenever user input is given
 func _input(event: InputEvent) -> void:
 	if drawing:
@@ -87,52 +90,52 @@ func _input(event: InputEvent) -> void:
 func start_drawing() -> void:
 	drawing = true
 	start_pos = get_closest_grid_point(get_global_mouse_position())
-	horizontal_line = wire_line_scn.instantiate()
-	vertical_line = wire_line_scn.instantiate()
-	add_child(horizontal_line)
-	add_child(vertical_line)
-	horizontal_line.direction = "horizontal"
-	vertical_line.direction = "vertical"
+	lines = []
 	
-
 
 func finish_drawing(end: Vector2) -> void:
 	drawing = false
 	if start_pos == end:
 		cancel_drawing()
 		return
-	elif vertical_line.points[0] == vertical_line.points[1]: 
-		# if no vertical line remove it and set horizontal endpoints
-		vertical_line.queue_free()
-		horizontal_line.set_endpoints()
-	elif horizontal_line.points[0] == horizontal_line.points[1]:
-		# if no horizontal line remove it and set vertical endpoints
-		horizontal_line.queue_free()
-		vertical_line.set_endpoints()
-	else:
-		# Set endpoint positions for lines
-		vertical_line.set_endpoints()
-		horizontal_line.set_endpoints()
+	
+	await get_tree().process_frame # wait 1 frame for other collisions to happen
+	
+	for line: WireLine in lines:
+		line.finish_drawing()
+	lines.clear()
+	
 	
 
 # draws the wire from start_point to point
 func draw_to_point(start: Vector2, end: Vector2) -> void:
 	if start == end: return
-	if swapped:
-		vertical_line.points[0] = start
-		vertical_line.points[1] = Vector2(start.x, end.y)
-		horizontal_line.points[0] = Vector2(start.x, end.y)
-		horizontal_line.points[1] = end
-	else:
-		horizontal_line.points[0] = start # horizontal line start
-		horizontal_line.points[1] = Vector2(end.x, start.y) # horizontal line end
-		vertical_line.points[0] = Vector2(end.x, start.y) # vertical line start
-		vertical_line.points[1] = end # vertical line end
+	for line: WireLine in lines: 
+		line.queue_free()
+	lines.clear()
+
+	for x: int in range(min(start.x, end.x), max(start.x, end.x), Constants.GRID_SIZE):
+		var line: WireLine = wire_line_scn.instantiate()
+		line.global_position = Vector2(x, start.y)
+		line.wire = self
+		add_child(line)
+		line.draw(Vector2.RIGHT)
+		lines.append(line)
+	for y: int in range(min(start.y, end.y), max(start.y, end.y), Constants.GRID_SIZE):
+		var line: WireLine = wire_line_scn.instantiate()
+		line.position = Vector2(end.x, y)
+		line.wire = self
+		add_child(line)
+		line.draw(Vector2.DOWN)
+		lines.append(line)
+			
 	
 
 # combines two seperate wires into one
 func merge(other: Wire) -> void:
 	if other == self: return
+	if is_queued_for_deletion(): return
+	print("Merging")
 	
 	if input != null and other.input != null:
 		error = error_type.MULTIPLE_INPUTS
@@ -149,25 +152,22 @@ func merge(other: Wire) -> void:
 			outputs[component] += other.outputs[component]
 		else:
 			outputs[component] = other.outputs[component]
-			
-	for child in other.get_children():
-		child.reparent(self)
-	other.queue_free()
-
 	
 	# reparent lines to be part of this wire
-	#for line: WireLine in other.get_children():
-		#line.call_deferred("reparent", self)
+	for line: WireLine in other.get_children():
+		line.wire = self
+		line.call_deferred("reparent", self)
+
+	other.queue_free()
 	
-	# other.queue_free()
 	update()
+	
 	
 func cancel_drawing() -> void:
 	drawing = false
-	horizontal_line.queue_free()
-	vertical_line.queue_free()
-	horizontal_line = null
-	vertical_line = null
+	for line: WireLine in lines:
+		line.queue_free()
+	lines.clear()
 
 
 func on_line_clicked(line: WireLine) -> void:
