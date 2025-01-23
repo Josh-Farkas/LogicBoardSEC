@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://rdl4spb0s6lx"]
+[gd_scene load_steps=8 format=3 uid="uid://rdl4spb0s6lx"]
 
+[ext_resource type="Script" path="res://UI/toolbar.gd" id="1_43ckq"]
 [ext_resource type="Texture2D" uid="uid://b2rqveohf8pv5" path="res://finger_icon-removebg-preview (1).png" id="1_ja6g0"]
 [ext_resource type="Texture2D" uid="uid://ci57yo85evevc" path="res://arrow_pointer-removebg-preview.png" id="2_uwbeh"]
 [ext_resource type="Texture2D" uid="uid://bcmsx86r0xikk" path="res://text_icon-removebg-preview.png" id="3_aldfa"]
@@ -13,6 +14,7 @@ offset_right = 837.0
 offset_bottom = 512.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
+script = ExtResource("1_43ckq")
 
 [node name="Finger" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(40, 40)
@@ -61,3 +63,10 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("6_u1neu")
+
+[connection signal="pressed" from="Finger" to="." method="_on_tool_button_pressed" binds= [&"finger"]]
+[connection signal="pressed" from="Arrow" to="." method="_on_tool_button_pressed" binds= [&"arrow"]]
+[connection signal="pressed" from="Wire" to="." method="_on_tool_button_pressed" binds= [&"wire"]]
+[connection signal="pressed" from="Text" to="." method="_on_tool_button_pressed" binds= [&"text"]]
+[connection signal="pressed" from="Pin Input" to="." method="_on_tool_button_pressed" binds= [&"pin_input"]]
+[connection signal="pressed" from="Pin Output" to="." method="_on_tool_button_pressed" binds= [&"pin_output"]]
