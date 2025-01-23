@@ -15,16 +15,20 @@ func _input(event: InputEvent) -> void:
 		var wire = wire_scn.instantiate()
 		add_child(wire)
 		wire.start_drawing()
-	
+
+
+func _process(delta: float) -> void:
+	queue_redraw()
 
 # draws grid of dots
 func _draw() -> void:
 	var zoom: Vector2 = $Camera2D.zoom
-	var size: Vector2 = get_viewport_rect().size / zoom
+	var size: Vector2 = get_viewport_rect().size
 	var pos: Vector2 = $Camera2D.position - size/2
 	
 	for x in range(snapped(pos.x, Constants.GRID_SIZE), snapped(pos.x + size.x, Constants.GRID_SIZE), Constants.GRID_SIZE * max(1, int(1/zoom.x))):
 		for y in range(snapped(pos.y, Constants.GRID_SIZE), snapped(pos.y + size.y, Constants.GRID_SIZE), Constants.GRID_SIZE * max(1, int(1/zoom.y))):
+			print(Vector2(x, y))
 			draw_circle(Vector2(x, y), 1 / zoom.x, Color.DIM_GRAY)
 
 

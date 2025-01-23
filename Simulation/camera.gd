@@ -22,3 +22,7 @@ func _input(event: InputEvent) -> void:
 		zoom *= 1.1
 		zoom = zoom.clampf(.25, 2)
 		redraw.emit()
+	
+	if event is InputEventMouseMotion and Input.is_action_pressed("pan"):
+		position -= event.relative
+		

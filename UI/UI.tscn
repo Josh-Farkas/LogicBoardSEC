@@ -64,7 +64,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/HSplitContainer/VBoxContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(980, 559)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Simulation" parent="VBoxContainer/HSplitContainer/VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_yvqpa")]
