@@ -5,12 +5,12 @@ var outputs : Array[Wire]
 var max_inputs : int
 var max_outputs : int
 var data: Array[int]
-
+var selected: bool
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	get_node("SelectionArea").selected.connect(on_selection)
 	
 func update() -> void:
 	operation()
@@ -45,7 +45,25 @@ func delete():
 	
 func drag():
 	pass
+	
+	
+func on_selection():
+	selected = true
+	add_to_group("Selected")
+	print("selected!")
+	
+func on_deselection():
+	selected = false
+	remove_from_group("Selected")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+# Helpers
+
+# Gets closest gridpoint to point
+func get_closest_grid_point(point: Vector2):
+	return Vector2(snapped(point.x, Constants.GRID_SIZE), snapped(point.y, Constants.GRID_SIZE))
+
+
+# Gets the closest gridpoint to the mouse
+func get_grid_mouse_position() -> Vector2:
+	return get_closest_grid_point(get_global_mouse_position())
+	

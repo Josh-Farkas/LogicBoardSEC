@@ -3,6 +3,7 @@ class_name LogicGate extends Component
 var state := false
 
 func _ready() -> void:
+	super()
 	max_inputs = 2
 	max_outputs = 1
 	inputs = [null, null]

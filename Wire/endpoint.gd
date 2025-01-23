@@ -18,9 +18,6 @@ func _ready() -> void:
 
 
 func merge(other: Endpoint):
-	if other.wire != wire:
-		pass
-		
 	for direction: Vector2 in directions:
 		# if either are true set it to true
 		directions[direction] = other.directions[direction] or directions[direction]
@@ -33,7 +30,7 @@ func _on_area_entered(other: Area2D) -> void:
 	if other is not Endpoint: return
 	other = other as Endpoint # convert from Area2D to Endpoints
 	# check for cross shape, we don't merge them if this is true
-	if not ((other.directions[Vector2.RIGHT] and other.directions[Vector2.LEFT] and directions[Vector2.UP] and directions[Vector2.DOWN]) or (other.directions[Vector2.UP] and other.directions[Vector2.DOWN] and directions[Vector2.LEFT] and directions[Vector2.RIGHT])):
+	if not ((other.directions[Vector2.RIGHT] and other.directions[Vector2.LEFT] and directions[Vector2.UP] and directions[Vector2.DOWN]) 
+		or (other.directions[Vector2.UP] and other.directions[Vector2.DOWN] and directions[Vector2.LEFT] and directions[Vector2.RIGHT])):
+		
 		merge(other)
-	else:
-		print("Failed Merge")

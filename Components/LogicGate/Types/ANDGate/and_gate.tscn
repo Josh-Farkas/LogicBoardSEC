@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b201naovfjhj1"]
+[gd_scene load_steps=6 format=3 uid="uid://b201naovfjhj1"]
 
 [ext_resource type="Script" path="res://Components/LogicGate/Types/ANDGate/and_gate.gd" id="1_ddct2"]
 [ext_resource type="Texture2D" uid="uid://2v783ywgnkes" path="res://Components/LogicGate/Types/ANDGate/AND-removebg-preview.png" id="2_3romd"]
 [ext_resource type="PackedScene" uid="uid://ce5hxt4rytcmr" path="res://Components/LogicGate/input_port.tscn" id="3_0ift5"]
+[ext_resource type="PackedScene" uid="uid://dymypsykqdxxh" path="res://Components/selection_area.tscn" id="4_krisp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfwe0"]
+resource_local_to_scene = true
+size = Vector2(96, 95.5)
 
 [node name="ANDGate" type="Node2D" groups=["LogicGates"]]
 script = ExtResource("1_ddct2")
@@ -21,3 +26,12 @@ position = Vector2(-32, 32)
 
 [node name="OutputPort" parent="." instance=ExtResource("3_0ift5")]
 position = Vector2(64, 0)
+
+[node name="SelectionArea" parent="." groups=["SelectionAreas"] instance=ExtResource("4_krisp")]
+position = Vector2(124, 75)
+
+[node name="CollisionShape2D" parent="SelectionArea" index="0"]
+position = Vector2(-108, -74.75)
+shape = SubResource("RectangleShape2D_gfwe0")
+
+[editable path="SelectionArea"]

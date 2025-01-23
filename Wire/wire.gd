@@ -135,7 +135,6 @@ func draw_to_point(start: Vector2, end: Vector2) -> void:
 func merge(other: Wire) -> void:
 	if other == self: return
 	if is_queued_for_deletion(): return
-	print("Merging")
 	
 	if input != null and other.input != null:
 		error = error_type.MULTIPLE_INPUTS

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://e2fabjnknov"]
+[gd_scene load_steps=4 format=3 uid="uid://e2fabjnknov"]
 
 [ext_resource type="Script" path="res://Simulation/simulation.gd" id="1_oioto"]
 [ext_resource type="Script" path="res://Simulation/camera.gd" id="2_qiina"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ib887"]
 
 [node name="Simulation" type="Node2D"]
 script = ExtResource("1_oioto")
@@ -13,3 +15,16 @@ limit_top = -1000
 limit_right = 1000
 limit_bottom = 1000
 script = ExtResource("2_qiina")
+
+[node name="SelectionBox" type="Area2D" parent="."]
+modulate = Color(0, 0.390625, 1, 1)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectionBox"]
+shape = SubResource("RectangleShape2D_ib887")
+
+[node name="ColorRect" type="ColorRect" parent="SelectionBox"]
+color = Color(0, 0.316667, 1, 0.47451)
