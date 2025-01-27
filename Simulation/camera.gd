@@ -24,5 +24,6 @@ func _input(event: InputEvent) -> void:
 		redraw.emit()
 	
 	if event is InputEventMouseMotion and Input.is_action_pressed("pan"):
-		position -= event.relative
+		position -= event.relative * 1 / zoom
+		
 		

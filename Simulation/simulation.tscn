@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://e2fabjnknov"]
+[gd_scene load_steps=5 format=3 uid="uid://e2fabjnknov"]
 
 [ext_resource type="Script" path="res://Simulation/simulation.gd" id="1_oioto"]
 [ext_resource type="Script" path="res://Simulation/camera.gd" id="2_qiina"]
-[ext_resource type="Script" path="res://Simulation/camera_dots.gd" id="3_3d34t"]
 [ext_resource type="Script" path="res://Simulation/dots.gd" id="3_brsyk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ib887"]
@@ -13,6 +12,10 @@ script = ExtResource("1_oioto")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 script = ExtResource("2_qiina")
+
+[node name="Dots" type="Node2D" parent="Camera2D"]
+position = Vector2(-576, -324)
+script = ExtResource("3_brsyk")
 
 [node name="SelectionBox" type="Area2D" parent="."]
 modulate = Color(0, 0.390625, 1, 1)
@@ -28,10 +31,3 @@ shape = SubResource("RectangleShape2D_ib887")
 color = Color(0, 0.317647, 1, 0.352941)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Camera" type="Camera2D" parent="CanvasLayer"]
-zoom = Vector2(2, 2)
-script = ExtResource("3_3d34t")
-
-[node name="Dots" type="Node2D" parent="CanvasLayer"]
-script = ExtResource("3_brsyk")
