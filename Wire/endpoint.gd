@@ -24,6 +24,13 @@ func merge(other: Endpoint):
 		other.directions[direction] = directions[direction]
 	if other.wire != wire: # wires are different
 		merge_wires.emit(other.wire)
+	
+	var count: int = 0
+	for v in directions.values():
+		if v:
+			count += 1
+	if count >= 3:
+		$Sprite2D.visible = true
 
 
 func _on_area_entered(other: Area2D) -> void:
