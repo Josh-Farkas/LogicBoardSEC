@@ -14,14 +14,21 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("zoom_in"):
+		var mouse_pos := get_global_mouse_position()
 		zoom *= .9
 		zoom = zoom.clampf(.25, 2)
-		redraw.emit()
+		var new_mouse_pos := get_global_mouse_position()
+		position += mouse_pos - new_mouse_pos
+
 
 	if event.is_action_pressed("zoom_out"):
+		var mouse_pos := get_global_mouse_position()
 		zoom *= 1.1
 		zoom = zoom.clampf(.25, 2)
-		redraw.emit()
+		var new_mouse_pos := get_global_mouse_position()
+		position += mouse_pos - new_mouse_pos
+
+
 	
 	if event is InputEventMouseMotion and Input.is_action_pressed("pan"):
 		position -= event.relative * 1 / zoom
