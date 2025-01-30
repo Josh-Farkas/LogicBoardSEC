@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqjrfquv6eugk"
-path="res://.godot/imported/pin_icon-removebg-preview.png-42eb5dd1bc81403619206bf7e23de612.ctex"
+uid="uid://c100ti4spei16"
+path="res://.godot/imported/wire_icon-removebg-preview.png-d77e11c95f3cbdc02b32356ba526d4e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pin_icon-removebg-preview.png"
-dest_files=["res://.godot/imported/pin_icon-removebg-preview.png-42eb5dd1bc81403619206bf7e23de612.ctex"]
+source_file="res://UI/Sprites/wire_icon-removebg-preview.png"
+dest_files=["res://.godot/imported/wire_icon-removebg-preview.png-d77e11c95f3cbdc02b32356ba526d4e8.ctex"]
 
 [params]
 

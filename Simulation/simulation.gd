@@ -57,21 +57,24 @@ func change_tool(tool_name: StringName):
 
 func start_selection():
 	selecting = true
+	$SelectionBox/CollisionShape2D.set_deferred("disabled", true)
 	selection_start_pos = get_global_mouse_position()
 	$SelectionBox.position = selection_start_pos
 	$SelectionBox/CollisionShape2D.shape.size = Vector2(1, 1)
 	$SelectionBox/ColorRect.size = Vector2(1, 1)
 	$SelectionBox/ColorRect.visible = true
-	$SelectionBox.monitorable = true
+	
 	
 	
 func end_selection():
 	selecting = false
 	$SelectionBox/ColorRect.visible = false
-	$SelectionBox.monitorable = false
-	# Move box far away so it never stays overlapping
-	# otherwise if the obect is clicked again it wont be detected
-	$SelectionBox.global_position = Vector2(-100000, -100000)
+	$SelectionBox/CollisionShape2D.set_deferred("disabled", false)
+
+	await get_tree().physics_frame
+	await get_tree().physics_frame # must wait 2 frames ???? I think its bc the set_deferred is only running after the first frame
+	
+	$SelectionBox/CollisionShape2D.set_deferred("disabled", true)
 	
 # Update the Area2Ds CollisionShape and update the visual ColorRect
 func draw_selection():

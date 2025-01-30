@@ -27,8 +27,7 @@ func merge(other: Endpoint):
 	
 	var count: int = 0
 	for v in directions.values():
-		if v:
-			count += 1
+		if v: count += 1
 	if count >= 3:
 		$Sprite2D.visible = true
 

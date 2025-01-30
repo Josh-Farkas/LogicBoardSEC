@@ -14,24 +14,21 @@ script = ExtResource("1_ddct2")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_3romd")
-offset = Vector2(16, 0)
 region_enabled = true
 region_rect = Rect2(0, 0, 96, 96)
 
 [node name="InputPort0" parent="." instance=ExtResource("3_0ift5")]
-position = Vector2(-32, -32)
+position = Vector2(-48, -32)
 
 [node name="InputPort1" parent="." instance=ExtResource("3_0ift5")]
-position = Vector2(-32, 32)
+position = Vector2(-48, 32)
 
 [node name="OutputPort" parent="." instance=ExtResource("3_0ift5")]
-position = Vector2(64, 0)
+position = Vector2(48, 0)
 
 [node name="SelectionArea" parent="." groups=["SelectionAreas"] instance=ExtResource("4_krisp")]
-position = Vector2(124, 75)
 
 [node name="CollisionShape2D" parent="SelectionArea" index="0"]
-position = Vector2(-108, -74.75)
 shape = SubResource("RectangleShape2D_gfwe0")
 
 [editable path="SelectionArea"]

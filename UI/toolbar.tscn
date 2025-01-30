@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://rdl4spb0s6lx"]
 
 [ext_resource type="Script" path="res://UI/toolbar.gd" id="1_43ckq"]
-[ext_resource type="Texture2D" uid="uid://b2rqveohf8pv5" path="res://finger_icon-removebg-preview (1).png" id="1_ja6g0"]
-[ext_resource type="Texture2D" uid="uid://ci57yo85evevc" path="res://arrow_pointer-removebg-preview.png" id="2_uwbeh"]
-[ext_resource type="Texture2D" uid="uid://bcmsx86r0xikk" path="res://text_icon-removebg-preview.png" id="3_aldfa"]
-[ext_resource type="Texture2D" uid="uid://c100ti4spei16" path="res://wire_icon-removebg-preview.png" id="3_rgm40"]
-[ext_resource type="Texture2D" uid="uid://bd3er2t1g8ei1" path="res://pin_icon__2_-removebg-preview.png" id="5_en62q"]
-[ext_resource type="Texture2D" uid="uid://bqjrfquv6eugk" path="res://pin_icon-removebg-preview.png" id="6_u1neu"]
+[ext_resource type="Texture2D" uid="uid://b2rqveohf8pv5" path="res://UI/Sprites/finger_icon-removebg-preview (1).png" id="1_ja6g0"]
+[ext_resource type="Texture2D" uid="uid://ci57yo85evevc" path="res://UI/Sprites/arrow_pointer-removebg-preview.png" id="2_uwbeh"]
+[ext_resource type="Texture2D" uid="uid://bcmsx86r0xikk" path="res://UI/Sprites/text_icon-removebg-preview.png" id="3_aldfa"]
+[ext_resource type="Texture2D" uid="uid://c100ti4spei16" path="res://UI/Sprites/wire_icon-removebg-preview.png" id="3_rgm40"]
+[ext_resource type="Texture2D" uid="uid://bd3er2t1g8ei1" path="res://UI/Sprites/pin_icon__2_-removebg-preview.png" id="5_en62q"]
+[ext_resource type="Texture2D" uid="uid://bqjrfquv6eugk" path="res://UI/Sprites/pin_icon-removebg-preview.png" id="6_u1neu"]
 
 [node name="Toolbar" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 50)

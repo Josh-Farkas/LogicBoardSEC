@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c100ti4spei16"
-path="res://.godot/imported/wire_icon-removebg-preview.png-a3e878dc381a3230e4747b045f14e636.ctex"
+uid="uid://b2rqveohf8pv5"
+path="res://.godot/imported/finger_icon-removebg-preview (1).png-139e51c7f5d7927f1501b990cbcf8fd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wire_icon-removebg-preview.png"
-dest_files=["res://.godot/imported/wire_icon-removebg-preview.png-a3e878dc381a3230e4747b045f14e636.ctex"]
+source_file="res://UI/Sprites/finger_icon-removebg-preview (1).png"
+dest_files=["res://.godot/imported/finger_icon-removebg-preview (1).png-139e51c7f5d7927f1501b990cbcf8fd9.ctex"]
 
 [params]
 

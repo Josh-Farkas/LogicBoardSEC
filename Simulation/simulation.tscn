@@ -18,16 +18,15 @@ position = Vector2(576, 324)
 script = ExtResource("2_qiina")
 
 [node name="SelectionBox" type="Area2D" parent="."]
-modulate = Color(0, 0.390625, 1, 1)
 collision_layer = 8
 collision_mask = 0
 monitoring = false
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SelectionBox"]
 shape = SubResource("RectangleShape2D_ib887")
 
 [node name="ColorRect" type="ColorRect" parent="SelectionBox"]
 color = Color(0, 0.317647, 1, 0.352941)
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

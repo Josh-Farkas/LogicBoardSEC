@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci57yo85evevc"
-path="res://.godot/imported/arrow_pointer-removebg-preview.png-6b6e90d3a71373bac674dd40b65f3722.ctex"
+uid="uid://bd3er2t1g8ei1"
+path="res://.godot/imported/pin_icon__2_-removebg-preview.png-2d0b8cbac4cb61ba936e2f808bab9bd4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arrow_pointer-removebg-preview.png"
-dest_files=["res://.godot/imported/arrow_pointer-removebg-preview.png-6b6e90d3a71373bac674dd40b65f3722.ctex"]
+source_file="res://UI/Sprites/pin_icon__2_-removebg-preview.png"
+dest_files=["res://.godot/imported/pin_icon__2_-removebg-preview.png-2d0b8cbac4cb61ba936e2f808bab9bd4.ctex"]
 
 [params]
 

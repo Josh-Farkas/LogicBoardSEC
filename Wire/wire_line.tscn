@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://boljr5ojssibf"]
+[gd_scene load_steps=5 format=3 uid="uid://boljr5ojssibf"]
 
 [ext_resource type="Script" path="res://Wire/wire_line.gd" id="1_rrxtv"]
 [ext_resource type="PackedScene" uid="uid://d188jv3d3r33t" path="res://Wire/endpoint.tscn" id="2_emo60"]
+[ext_resource type="PackedScene" uid="uid://dymypsykqdxxh" path="res://Components/selection_area.tscn" id="3_p6vj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oohee"]
+resource_local_to_scene = true
+size = Vector2(30, 4)
 
 [node name="WireLine" type="Line2D" groups=["wire_line"]]
 points = PackedVector2Array(0, 0, 32, 0)
@@ -15,3 +20,12 @@ script = ExtResource("1_rrxtv")
 
 [node name="Endpoint2" parent="." instance=ExtResource("2_emo60")]
 position = Vector2(32, 0)
+
+[node name="SelectionArea" parent="." instance=ExtResource("3_p6vj7")]
+position = Vector2(10, 0)
+
+[node name="CollisionShape2D" parent="SelectionArea" index="0"]
+position = Vector2(6, 0)
+shape = SubResource("RectangleShape2D_oohee")
+
+[editable path="SelectionArea"]

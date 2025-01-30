@@ -14,6 +14,12 @@ var wire: Wire:
 @onready var endpoint1: Endpoint = $Endpoint1
 @onready var endpoint2: Endpoint = $Endpoint2
 
+func _ready() -> void:
+	$SelectionArea.selected.connect(on_selection)
+
+func on_selection():
+	pass
+
 func draw(direction: Vector2):
 	endpoint1.directions[direction] = true
 	endpoint2.directions[-direction] = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2rqveohf8pv5"
-path="res://.godot/imported/finger_icon-removebg-preview (1).png-81f83a98fd7e179e89648638da0da2d3.ctex"
+uid="uid://ci57yo85evevc"
+path="res://.godot/imported/arrow_pointer-removebg-preview.png-eddc44d4715d884609144d678f309a40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://finger_icon-removebg-preview (1).png"
-dest_files=["res://.godot/imported/finger_icon-removebg-preview (1).png-81f83a98fd7e179e89648638da0da2d3.ctex"]
+source_file="res://UI/Sprites/arrow_pointer-removebg-preview.png"
+dest_files=["res://.godot/imported/arrow_pointer-removebg-preview.png-eddc44d4715d884609144d678f309a40.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcmsx86r0xikk"
-path="res://.godot/imported/text_icon-removebg-preview.png-dd04d67723827934f6d1b965c13b23d1.ctex"
+uid="uid://bqjrfquv6eugk"
+path="res://.godot/imported/pin_icon-removebg-preview.png-c46a7852ea79b376832514b14bdd185c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://text_icon-removebg-preview.png"
-dest_files=["res://.godot/imported/text_icon-removebg-preview.png-dd04d67723827934f6d1b965c13b23d1.ctex"]
+source_file="res://UI/Sprites/pin_icon-removebg-preview.png"
+dest_files=["res://.godot/imported/pin_icon-removebg-preview.png-c46a7852ea79b376832514b14bdd185c.ctex"]
 
 [params]
 
